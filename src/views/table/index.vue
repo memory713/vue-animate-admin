@@ -1,79 +1,69 @@
 <template>
   <div class="app-container">
-    <el-table
-      v-loading="listLoading"
-      :data="list"
-      element-loading-text="Loading"
-      border
-      fit
-      highlight-current-row
-    >
-      <el-table-column align="center" label="ID" width="95">
-        <template slot-scope="scope">
-          {{ scope.$index }}
-        </template>
-      </el-table-column>
-      <el-table-column label="Title">
-        <template slot-scope="scope">
-          {{ scope.row.title }}
-        </template>
-      </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.pageviews }}
-        </template>
-      </el-table-column>
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
-        <template slot-scope="scope">
-          <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
-        </template>
-      </el-table-column>
-    </el-table>
+    <h1>三角形</h1>
+    <div class="sanjiaoxing1 sanjiaoxing"></div>
+    <div class="sanjiaoxing2 sanjiaoxing"></div>
+    <div class="sanjiaoxing3 sanjiaoxing"></div>
+    <div class="sanjiaoxing4 sanjiaoxing"></div>
   </div>
 </template>
 
 <script>
-import { getList } from '@/api/table'
-
+/* eslint-disable */
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
-    return {
-      list: null,
-      listLoading: true
-    }
+    return {};
   },
-  created() {
-    this.fetchData()
-  },
-  methods: {
-    fetchData() {
-      this.listLoading = true
-      getList().then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
-    }
-  }
-}
+  created() {},
+  methods: {}
+};
 </script>
+<style lang="scss" scoped>
+.sanjiaoxing {
+  height: 0px;
+  width: 0px;
+  display: inline-block;
+}
+.sanjiaoxing1 {
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-left: 80px solid red;
+  position: relative;
+}
+.sanjiaoxing1:before {
+  content: "";
+  top: -50px;
+  left: 10px;
+  position: absolute;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-left: 80px solid red;
+}
+
+.sanjiaoxing2 {
+  margin-left: 100px;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-right: 80px solid blue;
+}
+.sanjiaoxing3 {
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 80px solid green;
+}
+.sanjiaoxing4 {
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 80px solid orange;
+  position: relative;
+}
+.sanjiaoxing4:after {
+  content: "";
+  position: absolute;
+  top: -80px;
+  left: 80px;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 80px solid orange;
+}
+</style>
