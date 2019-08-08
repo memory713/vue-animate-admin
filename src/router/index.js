@@ -72,10 +72,10 @@ export const constantRoutes = [
         meta: { title: "三角形", icon: "fengkonggongzuotai" }
       },
       {
-        path: "tree",
-        name: "Tree",
-        component: () => import("@/views/tree/index"),
-        meta: { title: "tooltips", icon: "tree" }
+        path: "tooltips",
+        name: "Tooltips",
+        component: () => import("@/views/table/tooltips"),
+        meta: { title: "标签", icon: "tree" }
       },
       {
         path: "word",
@@ -94,19 +94,59 @@ export const constantRoutes = [
         name: "Weather",
         component: () => import("@/views/table/weather"),
         meta: { title: "天气", icon: "banjie" }
+      },
+      {
+        path: "tiao",
+        name: "Tiao",
+        component: () => import("@/views/table/tiao"),
+        meta: { title: "跳动的纸片", icon: "banjie" }
+      },
+      {
+        path: "cloud",
+        name: "Cloud",
+        component: () => import("@/views/table/cloud"),
+        meta: { title: "白云飘飘", icon: "banjie" }
+      },
+      {
+        path: "overturn",
+        name: "Overturn",
+        component: () => import("@/views/table/overturn"),
+        meta: { title: "图片翻转", icon: "banjie" }
+      },
+      {
+        path: "pageturn",
+        name: "Pageturn",
+        component: () => import("@/views/table/pageturn"),
+        meta: { title: "翻页效果", icon: "banjie" }
       }
     ]
   },
 
   {
-    path: "/form",
+    path: "/canvas/tree",
     component: Layout,
+    redirect: "/canvas/tree",
+    name: "Canvas",
+    meta: { title: "canvas动画", icon: "form" },
+
     children: [
       {
         path: "index",
-        name: "Form",
-        component: () => import("@/views/form/index"),
-        meta: { title: "Form", icon: "form" }
+        name: "index",
+        component: () => import("@/views/tree/index"),
+        meta: { title: "canvas动画", icon: "form" }
+      },
+      {
+        path: "name",
+        name: "Name",
+        component: () => import("@/views/tree/name"),
+        meta: { title: "name", icon: "form" }
+      },
+      {
+        path: "rain",
+        name: "rain",
+        component: () => import("@/views/tree/rain"),
+        meta: { title: "雨滴", icon: "form" }
       }
     ]
   },

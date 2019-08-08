@@ -57,7 +57,7 @@ export default {
 .line {
   width: 0px;
   height: 2px;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #ff9900;
   transition: all 0.5s;
 }
 .music-ul li:hover .line {
