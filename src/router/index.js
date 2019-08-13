@@ -123,7 +123,7 @@ export const constantRoutes = [
   },
 
   {
-    path: "/canvas/tree",
+    path: "/canvas",
     component: Layout,
     redirect: "/canvas/tree",
     name: "Canvas",
@@ -131,16 +131,16 @@ export const constantRoutes = [
 
     children: [
       {
-        path: "index",
-        name: "index",
+        path: "tree",
+        name: "Tree",
         component: () => import("@/views/tree/index"),
-        meta: { title: "canvas动画", icon: "form" }
+        meta: { title: "画笔🖌️", icon: "form" }
       },
       {
         path: "name",
         name: "Name",
         component: () => import("@/views/tree/name"),
-        meta: { title: "name", icon: "form" }
+        meta: { title: "渐变", icon: "form" }
       },
       {
         path: "rain",
