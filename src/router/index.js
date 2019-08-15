@@ -143,6 +143,25 @@ export const constantRoutes = [
         meta: { title: "渐变", icon: "form" }
       },
       {
+        path: "round",
+        name: "Round",
+        component: () => import("@/views/tree/round"),
+        meta: { title: "圆形", icon: "form" }
+      },
+      {
+        path: "square",
+        name: "Square",
+        component: () => import("@/views/tree/square"),
+        meta: { title: "矩形", icon: "form" }
+      },
+      {
+        path: "RoundedRectangle",
+        name: "RoundedRectangle",
+        component: () => import("@/views/tree/RoundedRectangle"),
+        meta: { title: "圆角矩形", icon: "form" }
+      },
+
+      {
         path: "rain",
         name: "rain",
         component: () => import("@/views/tree/rain"),
