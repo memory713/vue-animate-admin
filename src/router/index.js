@@ -162,10 +162,10 @@ export const constantRoutes = [
       },
 
       {
-        path: "rain",
-        name: "rain",
-        component: () => import("@/views/tree/rain"),
-        meta: { title: "雨滴", icon: "form" }
+        path: "transformation",
+        name: "Transformation",
+        component: () => import("@/views/tree/transformation"),
+        meta: { title: "图形变换", icon: "form" }
       }
     ]
   },
