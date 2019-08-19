@@ -160,12 +160,36 @@ export const constantRoutes = [
         component: () => import("@/views/tree/RoundedRectangle"),
         meta: { title: "圆角矩形", icon: "form" }
       },
-
       {
         path: "transformation",
         name: "Transformation",
         component: () => import("@/views/tree/transformation"),
         meta: { title: "图形变换", icon: "form" }
+      },
+
+      {
+        path: "word",
+        name: "Word",
+        component: () => import("@/views/tree/word"),
+        meta: { title: "文字渲染", icon: "form" }
+      },
+      {
+        path: "grid",
+        name: "Grid",
+        component: () => import("@/views/tree/grid"),
+        meta: { title: "网格", icon: "form" }
+      },
+      {
+        path: "nonzeroSurroundRule",
+        name: "NonzeroSurroundRule",
+        component: () => import("@/views/tree/nonzeroSurroundRule"),
+        meta: { title: "非零环绕规则", icon: "form" }
+      },
+      {
+        path: "other",
+        name: "Other",
+        component: () => import("@/views/tree/other"),
+        meta: { title: "canvas补充", icon: "form" }
       }
     ]
   },
