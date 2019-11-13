@@ -75,13 +75,14 @@ export default {
 
       /*five*/
       var backgroundImage = new Image();
-      backgroundImage.src = "~@/assets/3.jpg";
+      backgroundImage.src = "3.jpg";
+      console.log(backgroundImage);
       backgroundImage.onload = function() {
         var pattern = ctx12.createPattern(backgroundImage, "repeat");
         ctx12.fillStyle = pattern;
-        ctx12.font = "bold 100px Arial";
-        ctx12.fillText("Canvas！", 40, 600);
-        //ctx12.strokeText('Canvas！',40,600);
+        ctx12.font = "bold 20px Arial";
+        ctx12.fillText("Canvas3232323！", 40, 600);
+        //ctx12.strokeText("Canvas！", 40, 600);
       };
     }
   }

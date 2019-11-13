@@ -1,43 +1,8 @@
 <template>
   <div class="app-container">
-    <div>
-      <h1>渐变</h1>
-      <div style>
-        <ol>
-          线性渐变
-          <li>step1:var grd = context.createLinearGradient( xstart,ystart,xend,yend )</li>
-          <li>step2:grd.addColorStop(stop,color)</li>
-        </ol>
-        <ol>
-          径向渐变
-          <li>step1:var grd = context.createRadialGradient( x0,y0,r0,x1,y1,r1 )</li>
-          <li>step2:grd.addColorStop(stop,color)</li>
-        </ol>
-        <ol>
-          图片填充背景
-          <li>context.createPattern( img/canvas/video,repeat-style )</li>
-          <li>repeat-style:no-repeat/repeat-x/repeat-y/repeat</li>
-        </ol>
-        <ol>
-          fillStyle赋值场景(strokeStyle)
-          <li>color （颜色作为背景色）</li>
-          <li>gradient (渐变)</li>
-          <li>img</li>
-          <li>canvas （其他动画作为背景色）</li>
-          <li>video</li>
-        </ol>
-      </div>
-    </div>
-    <div style="display:flex;">
-      <canvas height="200" width="400" id="canvas4"></canvas>
-      <div style="line-height:200px;">这是一个canvas渐变</div>
-    </div>
-
-    <div class="css-top">这是一个css渐变</div>
-
+    <h1>网格</h1>
     <div style="display: flex;">
-      <canvas id="canvas6" width="400" height="400"></canvas>
-      <canvas id="canvas10" width="400" height="400"></canvas>
+      <canvas height="600" width="600" id="canvas5" style="border:1px solid #808080;margin:0 auto;"></canvas>
     </div>
   </div>
 </template>
@@ -47,74 +12,152 @@
 export default {
   data() {
     return {
-      filterText: "",
-      data2: {}
+      data: [
+        { x: 100, y: 120 },
+        { x: 200, y: 160 },
+        { x: 300, y: 240 },
+        { x: 400, y: 320 },
+        { x: 500, y: 80 }
+      ]
     };
   },
   mounted() {
-    this.beginCanvas4();
-    this.beginCanvas6();
-    this.beginCanvas10();
+    // 初始化
+    var ctx5 = document.getElementById("canvas5").getContext("2d");
+    this.LineChart(ctx5);
+
+    this.drawGrid(ctx5);
+    this.drawAxis(ctx5);
+    this.drawDotted(ctx5, this.data);
   },
   methods: {
-    beginCanvas4() {
-      var canvas4 = document.getElementById("canvas4");
-      var ctx4 = canvas4.getContext("2d");
-      ctx4.lineWidth = 30;
-
-      for (var i = 0; i < 255; i++) {
-        ctx4.beginPath();
-        ctx4.moveTo(100 + i - 1, 100);
-        ctx4.lineTo(100 + i, 100);
-        ctx4.strokeStyle = "rgb(" + i + "," + i + "," + i + ")";
-        ctx4.stroke();
+    // 构建函数
+    LineChart(ctx5) {
+      // 画布的大小
+      this.canvas5Height = ctx5.canvas.height;
+      this.canvas5Width = ctx5.canvas.width;
+      // 网格的大小
+      this.gridSize = 10;
+      //坐标系的间距
+      this.space = 20;
+      // 坐标原点
+      this.x0 = this.space;
+      this.y0 = this.canvas5Height - this.space;
+      // 箭头的大小
+      this.arrowSize = 10;
+      // 绘制点
+      this.dottedSize = 10;
+      // 点的坐标 和数据有关系
+    },
+    // 绘制网格
+    drawGrid(ctx5) {
+      var xLineTotal = Math.floor(this.canvas5Height / this.gridSize);
+      var yLineTotal = Math.floor(this.canvas5Width / this.gridSize);
+      for (var i = 0; i < xLineTotal; i++) {
+        ctx5.beginPath();
+        ctx5.moveTo(0, i * this.gridSize - 0.5);
+        ctx5.lineTo(this.canvas5Width, i * this.gridSize - 0.5);
+        ctx5.strokeStyle = "#eee";
+        ctx5.stroke();
+      }
+      for (var i = 0; i < yLineTotal; i++) {
+        ctx5.beginPath();
+        ctx5.moveTo(i * this.gridSize - 0.5, 0);
+        ctx5.lineTo(i * this.gridSize - 0.5, this.canvas5Height);
+        ctx5.strokeStyle = "#eee";
+        ctx5.stroke();
       }
     },
-    beginCanvas6() {
-      var ctx6 = document.getElementById("canvas6").getContext("2d");
-      var linearGradient = ctx6.createLinearGradient(0, 0, 300, 300);
-      linearGradient.addColorStop(0, "white");
-      linearGradient.addColorStop(0.25, "yellow");
-      linearGradient.addColorStop(0.5, "green");
-      linearGradient.addColorStop(0.75, "blue");
-      linearGradient.addColorStop(1, "black");
+    // 绘制坐标系
+    drawAxis(ctx5) {
+      // 绘制x轴
 
-      ctx6.fillStyle = linearGradient;
-
-      ctx6.fillRect(0, 0, 300, 300);
-    },
-    beginCanvas10() {
-      var ctx10 = document.getElementById("canvas10").getContext("2d");
-      var linearGradient2 = ctx10.createRadialGradient(
-        150,
-        150,
-        50,
-        150,
-        150,
-        250
+      ctx5.beginPath();
+      ctx5.moveTo(this.x0 - 0.5, this.y0 - 0.5);
+      ctx5.lineTo(this.canvas5Width - this.space - 0.5, this.y0 - 0.5);
+      ctx5.strokeStyle = "#000";
+      ctx5.stroke();
+      // 箭头
+      ctx5.beginPath();
+      ctx5.moveTo(
+        this.canvas5Width - this.space - this.arrowSize,
+        this.y0 + this.arrowSize / 2
       );
-      linearGradient2.addColorStop(0, "white");
-      linearGradient2.addColorStop(0.25, "yellow");
-      linearGradient2.addColorStop(0.5, "green");
-      linearGradient2.addColorStop(0.75, "blue");
-      linearGradient2.addColorStop(1, "black");
+      ctx5.lineTo(
+        this.canvas5Width - this.space - this.arrowSize,
+        this.y0 - this.arrowSize / 2
+      );
+      ctx5.lineTo(this.canvas5Width - this.space - 0.5, this.y0);
+      ctx5.fill();
+      ctx5.strokeStyle = "#000";
+      ctx5.stroke();
 
-      ctx10.fillStyle = linearGradient2;
-
-      ctx10.fillRect(0, 0, 300, 300);
+      // 绘制y轴
+      ctx5.beginPath();
+      ctx5.moveTo(this.x0 - 0.5, this.y0 - 0.5);
+      ctx5.lineTo(this.space - 0.5, this.space - 0.5);
+      ctx5.strokeStyle = "#000";
+      ctx5.stroke();
+      // 箭头
+      ctx5.beginPath();
+      ctx5.moveTo(this.space + this.arrowSize / 2, this.space + this.arrowSize);
+      ctx5.lineTo(this.space - this.arrowSize / 2, this.space + this.arrowSize);
+      ctx5.lineTo(this.space, this.space);
+      ctx5.fill();
+      ctx5.strokeStyle = "#000";
+      ctx5.stroke();
+    },
+    // 绘制点
+    drawDotted(ctx5, data) {
+      var that = this;
+      //记录当前坐标
+      var prevCanvasX = 0;
+      var prevCanvasY = 0;
+      data.forEach(function(item, i) {
+        // x的坐标=原点的坐标+数据的坐标
+        var canvasX = that.x0 + item.x;
+        var canvasY = that.y0 - item.y;
+        // 绘制
+        ctx5.beginPath();
+        ctx5.moveTo(
+          canvasX - that.dottedSize / 2,
+          canvasY - that.dottedSize / 2
+        );
+        ctx5.lineTo(
+          canvasX + that.dottedSize / 2,
+          canvasY - that.dottedSize / 2
+        );
+        ctx5.lineTo(
+          canvasX + that.dottedSize / 2,
+          canvasY + that.dottedSize / 2
+        );
+        ctx5.lineTo(
+          canvasX - that.dottedSize / 2,
+          canvasY + that.dottedSize / 2
+        );
+        ctx5.closePath();
+        ctx5.fill();
+        // 点的连线
+        if (i == 0) {
+          ctx5.beginPath();
+          ctx5.moveTo(that.x0, that.y0);
+          ctx5.lineTo(canvasX, canvasY);
+          ctx5.stroke();
+        } else {
+          // 上一个点
+          ctx5.beginPath();
+          ctx5.moveTo(prevCanvasX, prevCanvasY);
+          ctx5.lineTo(canvasX, canvasY);
+          ctx5.stroke();
+        }
+        // 记录下当前坐标
+        prevCanvasX = canvasX;
+        prevCanvasY = canvasY;
+      });
     }
   }
 };
 </script>
 <style lang="scss" scoped>
-.css-top {
-  width: 100%;
-  height: 100px;
-  background-image: linear-gradient(to right, pink, blue);
-  margin-bottom: 20px;
-  color: #fff;
-  text-align: center;
-  line-height: 100px;
-}
 </style>
 
