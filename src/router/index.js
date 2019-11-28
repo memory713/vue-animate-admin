@@ -169,7 +169,7 @@ export const constantRoutes = [
 
       {
         path: "word",
-        name: "Word",
+        name: "Words",
         component: () => import("@/views/tree/word"),
         meta: { title: "文字渲染", icon: "form" }
       },
@@ -191,6 +191,44 @@ export const constantRoutes = [
         component: () => import("@/views/tree/other"),
         meta: { title: "canvas补充", icon: "form" }
       }
+    ]
+  },
+
+  // 动画组建
+  {
+    path: "/animate",
+    component: Layout,
+    redirect: "/animate/index",
+    name: "Animate",
+    meta: { title: "动画组件", icon: "form" },
+
+    children: [
+      {
+        path: "index",
+        name: "Index",
+        component: () => import("@/views/animate/index"),
+        meta: { title: "倒计时", icon: "form" }
+      },
+      {
+        path: "score",
+        name: "Score",
+        component: () => import("@/views/animate/score"),
+        meta: { title: "评分", icon: "form" }
+      },
+      {
+        path: "ball",
+        name: "Ball",
+        component: () => import("@/views/animate/ball"),
+        meta: { title: "模拟小球运动", icon: "form" }
+      },
+      {
+        path: "write",
+        name: "Write",
+        component: () => import("@/views/animate/write"),
+        meta: { title: "写字", icon: "form" }
+      }
+
+      //
     ]
   },
 
