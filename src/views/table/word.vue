@@ -4,19 +4,22 @@
       <h1>字符动画</h1>
       <ul class="music-ul">
         <li>
-          hello
+          <span>hello</span>
           <div class="line"></div>
         </li>
         <li>
-          world
+          <span>world</span>
+
           <div class="line"></div>
         </li>
         <li>
-          emmmmmm
+          <span>emmmmmm</span>
+
           <div class="line"></div>
         </li>
         <li>
-          beautiful
+          <span>beautiful</span>
+
           <div class="line"></div>
         </li>
       </ul>
