@@ -1,8 +1,10 @@
 <template>
   <div class="app-container">
     <div>
-      <img src alt id="img" style="width:100px;height:100px;border:1px solid red;" />
+      <img id="img" style="width:100px;height:100px;border:1px solid red;" />
+
       <h1>canvas 文字渲染</h1>
+
       <div style="display: flex;">
         <ol style="width: 30%;">
           文字渲染基础
@@ -16,16 +18,23 @@
         </ol>
         <ol style="width: 40%;">
           font
-          <li>font:font-style,font-variant,font-weight,font-size,font-family</li>
+          <li>
+            font:font-style,font-variant,font-weight,font-size,font-family
+          </li>
           <li>font-style:normal(default)/italic(斜体字)/oblique(倾斜字体)</li>
           <li>font-variant:normal(default)/small-caps(小型大写字母)</li>
-          <li>font-weight:normal(default) 400/lighter/bold 700/bolder/100~900</li>
+          <li>
+            font-weight:normal(default) 400/lighter/bold 700/bolder/100~900
+          </li>
           <li>font-size:20px(default)/2em/150%</li>
           <li>font-family:支持@font-face</li>
         </ol>
       </div>
       <div style="display: flex;">
-        <canvas id="canvas12" style="border:1px solid #808080;margin:0 auto;"></canvas>
+        <canvas
+          id="canvas12"
+          style="border:1px solid #808080;margin:0 auto;"
+        ></canvas>
       </div>
     </div>
   </div>
@@ -99,4 +108,3 @@ export default {
   line-height: 100px;
 }
 </style>
-
